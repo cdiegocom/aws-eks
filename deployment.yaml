@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld
+spec:
+  selector:
+    matchLabels:
+      run: helloworld-backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: helloworld-backend
+    spec:
+      containers:
+        - name: helloworld
+          image: public.ecr.aws/nginx/nginx:1.21-perl
+          ports:
+            - containerPort: 80
+              protocol: TCP
